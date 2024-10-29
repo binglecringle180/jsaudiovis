@@ -1,49 +1,83 @@
+//chatgpt go brr (i dont know what im doing)
+
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
 const file = document.getElementById("fileupload");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d");
-let audioContext;
+
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let audioSource;
 let analyser;
+let audio1 = document.getElementById("audio1");
+let animationId; // Variable to track the animation frame request
 
-file.addEventListener("change", function(){
+// Function to stop current audio
+function stopAudio() {
+    if (audio1.src) {
+        audio1.pause();
+        audio1.src = ''; // Clear the source
+    }
+}
+
+// File upload event
+file.addEventListener("change", function() {
     const files = this.files;
-    const audio1 = document.getElementById("audio1");
-    audio1.src = '';
+    if (files.length === 0) return; // Check if a file was selected
+
+    stopAudio(); // Stop any currently playing audio
+
+    // Load new audio file
     audio1.src = URL.createObjectURL(files[0]);
     audio1.load();
-    audio1.play();
-    audioContext = new AudioContext();
+
+    // Create audio source and analyser
+    if (audioSource) {
+        audioSource.disconnect(); // Disconnect previous audio source
+    }
+
     audioSource = audioContext.createMediaElementSource(audio1);
     analyser = audioContext.createAnalyser();
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);
-    analyser.fftSize = 512; //size
+    analyser.fftSize = 512;
+
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
+    const div = canvas.width / bufferLength;
 
-    const div = canvas.width/bufferLength;
-    let x;
-    let y;
+    // Clear previous animation if exists
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+    }
 
-    function animate(){
-        x = 0;
+    // Animation function
+    function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         analyser.getByteFrequencyData(dataArray);
-        drawVisualizer(bufferLength, x, div, y, dataArray);
-        requestAnimationFrame(animate);
+        drawVisualizer(bufferLength, div, dataArray);
+        animationId = requestAnimationFrame(animate); // Store the animation frame ID
     }
     animate();
-    
-})
 
-function drawVisualizer(bufferLength, x, div, y, dataArray){
-    for (let i = 0; i < bufferLength; i++){
-        y = dataArray[i] * 2;
+    // Start playback after the audio element is ready
+    audio1.play().catch(error => {
+        console.error("Playback error:", error);
+    });
+});
+
+// Draw visualizer function
+function drawVisualizer(bufferLength, div, dataArray) {
+    for (let i = 0; i < bufferLength; i++) {
+        const y = dataArray[i] * 2; // Scale for visibility
         ctx.fillStyle = "white";
-        ctx.fillRect(x, canvas.height - y, div, y);
-        x += div;
+        ctx.fillRect(i * div, canvas.height - y, div, y);
     }
 }
+
+// Optional: Resize the canvas on window resize
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
