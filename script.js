@@ -7,7 +7,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d");
 
-let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let audioContext;
 let audioSource;
 let analyser;
 let audio1 = document.getElementById("audio1");
@@ -33,6 +33,7 @@ file.addEventListener("change", function() {
     audio1.load();
 
     // Create audio source and analyser
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
     if (audioSource) {
         audioSource.disconnect(); // Disconnect previous audio source
     }
