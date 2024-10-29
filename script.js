@@ -69,10 +69,16 @@ file.addEventListener("change", function() {
 
 // Draw visualizer function
 function drawVisualizer(bufferLength, div, dataArray) {
+    // Clear the canvas before drawing
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < bufferLength; i++) {
         const y = dataArray[i] * 2; // Scale for visibility
+        const height = Math.max(y, 0); // Ensure non-negative height
+
+        // Adjust rectangle width for slight overlap or gap elimination
         ctx.fillStyle = "white";
-        ctx.fillRect(i * div, canvas.height - y, div, y);
+        ctx.fillRect(i * div, canvas.height - height, div + 1, height); // Use div - 1 for slight overlap
     }
 }
 
