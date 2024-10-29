@@ -5,7 +5,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d");
 let audioContext;
-audioContext = new AudioContext();
 let audioSource;
 let analyser;
 
@@ -16,6 +15,7 @@ file.addEventListener("change", function(){
     audio1.src = URL.createObjectURL(files[0]);
     audio1.load();
     audio1.play();
+    audioContext = new AudioContext();
     audioSource = audioContext.createMediaElementSource(audio1);
     analyser = audioContext.createAnalyser();
     audioSource.connect(analyser);
