@@ -84,23 +84,7 @@ function drawVisualizer(bufferLength, div, dataArray) {
         const y = dataArray[i] * 2; // Scale for visibility
         const height = Math.max(y, 0); // Ensure non-negative height
 
-        // Calculate intensity (0-1) based on height
-        const intensity = y / (canvas.height/2);
-        
-        // Create a gradient for this specific bar
-        const gradient = ctx.createLinearGradient(
-            i * div,
-            canvas.height,
-            i * div,
-            canvas.height - height
-        );
-        
-        // Add color stops to the gradient
-        gradient.addColorStop(0, getColor(intensity * 0.5));  // Bottom color (cooler)
-        gradient.addColorStop(1, getColor(intensity));        // Top color (hotter)
-        
-        // Use the gradient as fill style
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "white";
 
         ctx.fillRect(i * div, canvas.height - height, div + 1, height); // Keep it div for consistent width
     }
@@ -111,15 +95,3 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
-
-// Helper function to get color based on intensity
-function getColor(intensity) {
-    // Map intensity to hue (240 = blue, 0 = red)
-    const hue = 240 - (intensity * 240);
-    
-    // Increase saturation and lightness with intensity
-    const saturation = 50 + (intensity * 50); // 50-100%
-    const lightness = 30 + (intensity * 40);  // 20-60%
-    
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-}
