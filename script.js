@@ -1,5 +1,3 @@
-//chatgpt go brr (i dont know what im doing)
-
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
 const file = document.getElementById("fileupload");
@@ -43,10 +41,13 @@ file.addEventListener("change", async function() {
         await audioContext.resume();
     }
 
+    // Disconnect previous audio source if it exists
     if (audioSource) {
-        audioSource.disconnect(); // Disconnect previous audio source
+        audioSource.disconnect();
+        analyser.disconnect();
     }
 
+    // Create a new MediaElementSource and Analyser
     audioSource = audioContext.createMediaElementSource(audio1);
     analyser = audioContext.createAnalyser();
     audioSource.connect(analyser);
