@@ -44,9 +44,8 @@ file.addEventListener("change", async function() {
     // Disconnect previous audio source if it exists
     if (audioSource) {
         audioSource.disconnect();
-        analyser.disconnect();
     }
-
+    
     // Create a new MediaElementSource and Analyser
     audioSource = audioContext.createMediaElementSource(audio1);
     analyser = audioContext.createAnalyser();
