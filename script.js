@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvas1");
     const fileInput = document.getElementById("fileupload");
-    const contentDiv = document.getElementById("content");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext("2d");
@@ -34,11 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         audioElement.play().catch(error => {
             console.error("Playback error:", error);
         });
-    }
-
-    // Clean up when audio ends
-    function onAudioEnded() {
-        // No need to clean up since we remove the audio element
     }
 
     // File upload event
@@ -95,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add event listeners for the new audio element
         audio1.addEventListener('loadedmetadata', () => onMetadataLoaded(audio1));
-        audio1.addEventListener('ended', onAudioEnded);
 
         // Start the animation
         animate();
