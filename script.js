@@ -18,11 +18,12 @@ function stopAudio() {
     if (audio1.src) {
         audio1.pause();
         audio1.src = ''; // Clear the source
+        audio1.load(); // Load to reset state
     }
 }
 
 // File upload event
-file.addEventListener("change", function() {
+file.addEventListener("change", async function() {
     const files = this.files;
     if (files.length === 0) return; // Check if a file was selected
 
@@ -32,8 +33,16 @@ file.addEventListener("change", function() {
     audio1.src = URL.createObjectURL(files[0]);
     audio1.load();
 
-    // Create audio source and analyser
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    // Create audio context if it doesn't exist
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    // Resume audio context if suspended
+    if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+    }
+
     if (audioSource) {
         audioSource.disconnect(); // Disconnect previous audio source
     }
@@ -70,16 +79,12 @@ file.addEventListener("change", function() {
 
 // Draw visualizer function
 function drawVisualizer(bufferLength, div, dataArray) {
-    // Clear the canvas before drawing
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     for (let i = 0; i < bufferLength; i++) {
         const y = dataArray[i] * 2; // Scale for visibility
         const height = Math.max(y, 0); // Ensure non-negative height
 
-        // Adjust rectangle width for slight overlap or gap elimination
         ctx.fillStyle = "white";
-        ctx.fillRect(i * div, canvas.height - height, div + 1, height); // Use div - 1 for slight overlap
+        ctx.fillRect(i * div, canvas.height - height, div + 1, height); // Keep it div for consistent width
     }
 }
 
