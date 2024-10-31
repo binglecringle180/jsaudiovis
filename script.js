@@ -10,22 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let analyser;
     let animationId;
 
-    function removeAudioElement() {
-        const existingAudio = document.getElementById("audio1");
-        if (existingAudio) {
-            existingAudio.pause();
-            existingAudio.src = '';
-            existingAudio.remove();
-        }
-    }
-
-    function cleanupAudio() {
-        if (audioSource) {
-            audioSource.disconnect();
-            audioSource = null;
-        }
-    }
-
     function onMetadataLoaded(audioElement) {
         audioElement.play().catch(error => {
             console.error("Playback error:", error);
@@ -36,8 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const files = this.files;
         if (files.length === 0) return;
 
-        removeAudioElement();
-        cleanupAudio();
+        const audio = document.getElementById("audio1");
+        if (audio) {
+            audio.pause();
+            audio.src = '';
+            audio.remove();
+        }
+        if (audioSource) {
+            audioSource.disconnect();
+            audioSource = null;
+        }
 
         const audio1 = document.createElement("audio");
         audio1.id = "audio1";
@@ -85,7 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const y = dataArray[i] / 255 * canvas.height / 2;
             const height = Math.max(y, 0);
 
-            ctx.fillStyle = "white";
+            const hue = (i / bufferLength) * 360; // Hue ranges from 0 to 360
+            const saturation = 50 + (height / (canvas.height / 2) * 40);
+            const color = `hsl(${hue}, 100%, ${saturation}%)`;
+            ctx.fillStyle = color;
+            
             ctx.fillRect(i * div, canvas.height - height, div + 1, height);
         }
     }
