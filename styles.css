@@ -1,25 +1,32 @@
-#fileupload {
-    position: fixed;
+#content {
+    position: relative;
     color: white;
-    top: 10px;
-    left: 10px;
-    z-index: 100;
+    z-index: 10;
 }
-  
+
+#fileupload {
+    position: relative;
+    z-index: 20;
+}
+
 #canvas1 {
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
 }
   
 audio {
-    position: fixed;
+    margin-top: 10px;
     left: 10px;
-    top: 50px;
     width: calc(100% - 20px);
+    position: relative;
+    z-index: 20;
 }
+
 body {
     background-color: black;
+    margin: 0;
 }
