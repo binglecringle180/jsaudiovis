@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const height = Math.max(y, 0);
 
             ctx.fillStyle = "white";
-            ctx.fillRect(i * div, canvas.height - height, div + 1, height); // Keep it div for consistent width
+            ctx.fillRect(i * div, canvas.height - height, div + 1, height);
         }
     }
 
