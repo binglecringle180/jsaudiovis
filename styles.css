@@ -17,6 +17,18 @@
     height: 100vh;
     z-index: 1;
 }
+
+#full {
+    position: fixed;
+      z-index: 10000;
+      top: 1px;
+      right: 1px;
+      border: 0;
+      padding: 0;
+      background: none;
+      cursor: pointer;
+      outline: none;
+}
   
 audio {
     margin-top: 10px;
