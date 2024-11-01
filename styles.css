@@ -20,7 +20,7 @@
 
 #full {
     position: absolute;
-    z-index: 10000;
+    z-index: 100;
     top: 0px;
     right: 0px;
     border: 0;
