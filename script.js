@@ -50,11 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const files = this.files;
         if (files.length === 0) return;
 
-        const audio = document.getElementById("audio1");
-        if (audio) {
-            audio.pause();
-            audio.src = '';
-            audio.remove();
+        const existingAudio = document.getElementById("audio1");
+        if (existingAudio) {
+            existingAudio.pause();
+            existingAudio.src = '';
+            existingAudio.remove();
         }
         if (audioSource) {
             audioSource.disconnect();
