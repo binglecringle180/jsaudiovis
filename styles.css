@@ -1,12 +1,41 @@
+@font-face {
+    font-family: quicksandttf;
+    src: url(Quicksand-VariableFont_wght.ttf);
+}
+
 #content {
     position: relative;
     color: white;
     z-index: 10;
 }
 
+.filecontainer {
+    margin: 10px;
+}
 #fileupload {
-    position: relative;
+    display: none; /* Hide the default file input */
+}
+
+.file-upload-label {
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    font-family: quicksandttf;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
     z-index: 20;
+    position: relative;
+    display: inline-block; /* Allow margin and padding */
+}
+
+.file-upload-label:hover {
+    background-color: rgb(66, 132, 255); /* Change background on hover */
+    box-shadow: 0 0 5px 5px rgba(84, 134, 184, 0.5);
 }
 
 #canvas1 {
@@ -31,7 +60,7 @@
 }
   
 audio {
-    margin-top: 10px;
+    margin-top: 4px;
     left: 10px;
     width: calc(100% - 20px);
     position: relative;
