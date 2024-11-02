@@ -13,7 +13,7 @@
     margin: 10px;
 }
 #fileupload {
-    display: none; /* Hide the default file input */
+    display: none;
 }
 
 .file-upload-label {
@@ -26,15 +26,15 @@
     font-family: quicksandttf;
     font-weight: bold;
     padding: 10px 15px;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px;
     cursor: pointer;
     z-index: 20;
     position: relative;
-    display: inline-block; /* Allow margin and padding */
+    display: inline-block;
 }
 
 .file-upload-label:hover {
-    background-color: rgb(66, 132, 255); /* Change background on hover */
+    background-color: rgb(66, 132, 255);
     box-shadow: 0 0 5px 5px rgba(84, 134, 184, 0.5);
 }
 
