@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
     const canvas = document.getElementById("canvas1");
     const fileInput = document.getElementById("fileupload");
     canvas.width = window.innerWidth;
@@ -54,6 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fileInput.addEventListener("change", async function() {
         const files = this.files;
+        let filename = files[0] ? files[0].name : 'No file chosen';
+        const extension = filename.substring(filename.lastIndexOf('.'), filename.length);
+        filename = filename.substring(0, filename.lastIndexOf('.'));
+        document.getElementById('filename').textContent = `${filename} (${extension})`;
+
         if (files.length === 0) return;
 
         const existingAudio = document.getElementById("audio1");
