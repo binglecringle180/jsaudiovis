@@ -2,20 +2,17 @@
     font-family: quicksandttf;
     src: url(Quicksand-VariableFont_wght.ttf);
 }
-
 #content {
     position: relative;
     color: white;
     z-index: 10;
 }
-
 .filecontainer {
     margin: 10px;
 }
 #fileupload {
     display: none;
 }
-
 .file-upload-label {
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
@@ -32,19 +29,16 @@
     position: relative;
     display: inline-block;
 }
-
 .file-upload-label:hover {
     background-color: rgb(66, 132, 255);
     box-shadow: 0 0 5px 5px rgba(84, 134, 184, 0.5);
 }
-
 .file-name-label {
     padding-left: 10px;
     font-family: quicksandttf;
     font-weight: bold;
     color: white;
 }
-
 #canvas1 {
     position: fixed;
     left: 0;
@@ -53,7 +47,6 @@
     height: 100vh;
     z-index: 1;
 }
-
 #full {
     position: absolute;
     z-index: 100;
@@ -64,16 +57,13 @@
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     outline: none;
-}
-  
+} 
 audio {
-    margin-top: 4px;
+    position: relative;
     left: 10px;
     width: calc(100% - 20px);
-    position: relative;
     z-index: 20;
 }
-
 body {
     background-color: black;
     margin: 0;

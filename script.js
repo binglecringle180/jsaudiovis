@@ -33,7 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
         }
     });
-
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
     const canvas = document.getElementById("canvas1");
     const fileInput = document.getElementById("fileupload");
     canvas.width = window.innerWidth;
@@ -117,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const y = dataArray[i] / 255 * canvas.height / 2;
             const height = Math.max(y, 0);
 
-            const hue = (i / bufferLength) * 360; // Hue ranges from 0 to 360
+            const hue = (i / bufferLength) * 360;
             const saturation = 50 + (height / (canvas.height / 2) * 40);
             const color = `hsl(${hue}, 100%, ${saturation}%)`;
             ctx.fillStyle = color;
@@ -126,8 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+    
 });
