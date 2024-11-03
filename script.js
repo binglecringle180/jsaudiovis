@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const audio1 = document.createElement("audio");
         audio1.id = "audio1";
         audio1.controls = true;
-        audio1.loop = true;
         document.getElementById("content").appendChild(audio1);
 
         audio1.src = URL.createObjectURL(files[0]);
