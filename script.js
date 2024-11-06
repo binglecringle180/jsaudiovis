@@ -116,12 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function drawVisualizer(bufferLength, dataArray) {
         let div = canvas.width / bufferLength;
+        let scale = canvas.height / 2;
         for (let i = 0; i < bufferLength; i++) {
-            const y = dataArray[i] / 255 * canvas.height / 2;
+            const y = dataArray[i] / 255 * scale;
             const height = Math.max(y, 0);
 
             const hue = (i / bufferLength) * 360;
-            const saturation = 50 + (height / (canvas.height / 2) * 40);
+            const saturation = 50 + (height / (scale) * 40);
             const color = `hsl(${hue}, 100%, ${saturation}%)`;
             ctx.fillStyle = color;
             
