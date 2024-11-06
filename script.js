@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
         analyser = audioContext.createAnalyser();
         audioSource.connect(analyser);
         analyser.connect(audioContext.destination);
-        analyser.fftSize = 512;
 
+        analyser.fftSize = 1024;
         const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
 
@@ -106,6 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             analyser.getByteFrequencyData(dataArray);
             drawVisualizer(bufferLength, dataArray);
+            analyser.getByteTimeDomainData(dataArray);
+            drawWaveform(bufferLength, dataArray);
+
             animationId = requestAnimationFrame(animate);
         }
 
@@ -113,6 +116,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         animate();
     });
+
+    function drawWaveform(bufferLength, dataArray) {
+        let div = canvas.width / bufferLength;
+        let scale = canvas.height / 4;
+        ctx.beginPath();
+        for (let i = 0; i < bufferLength; i++) {
+            const y = dataArray[i] / 255 * scale + scale;
+            ctx.strokeStyle = "white";
+            if (i === 0) {
+                ctx.moveTo(i * div, y);
+            } else {
+                ctx.lineTo(i * div, y);
+            }
+        }
+        ctx.stroke();
+    }
 
     function drawVisualizer(bufferLength, dataArray) {
         let div = canvas.width / bufferLength;
