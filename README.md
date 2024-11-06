@@ -1,3 +1,3 @@
 # [jsaudiovis](https://binglecringle180.github.io/jsaudiovis/)
 An audio visualizer made in javascript.\
-![wattesigma](https://yeetyourfiles.lol/download/4e30c365-00f4-4362-8d23-839c76398139 "wattesigma")
+![wattesigma](https://yeetyourfiles.lol/download/aff7eab2-593e-4508-bc60-619cf681bff7 "wattesigma")
