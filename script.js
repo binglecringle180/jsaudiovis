@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function drawWaveform(bufferLength, dataArray) {
-        let div = canvas.width / bufferLength;
+        let div = canvas.width / bufferLength + 1;
         let scale = canvas.height / 4;
         ctx.beginPath();
         for (let i = 0; i < bufferLength; i++) {
