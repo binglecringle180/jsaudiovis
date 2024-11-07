@@ -123,10 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function drawVisualizer(bufferLengthFrequency, dataArrayFrequency, bufferLengthWaveform, dataArrayWaveform) {
-            // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw Frequency Visualizer
             const divFrequency = canvas.width / bufferLengthFrequency;
             const scaleFrequency = canvas.height / 2;
         
@@ -141,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.fillRect(i * divFrequency, canvas.height - height, divFrequency + 1, height);
             }
         
-            // Draw Waveform
             const divWaveform = canvas.width / bufferLengthWaveform + 1;
             const scaleWaveform = canvas.height / 4;
             ctx.strokeStyle = "white";
@@ -159,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 analyserVisualizer.getByteFrequencyData(dataArrayVisualizer);
                 analyserWaveform.getByteTimeDomainData(dataArrayWaveform);
                 
-                // Call the combined draw function
                 drawVisualizer(bufferLengthVisualizer, dataArrayVisualizer, bufferLengthWaveform, dataArrayWaveform);
             }
         
