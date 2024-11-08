@@ -23,7 +23,7 @@
     font-family: quicksandttf;
     font-weight: bold;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     z-index: 20;
     position: relative;
@@ -34,7 +34,7 @@
     box-shadow: 0 0 5px 5px rgba(84, 134, 184, 0.5);
 }
 .file-name-label {
-    padding-left: 10px;
+    padding-left: 5px;
     font-family: quicksandttf;
     font-weight: bold;
     color: white;

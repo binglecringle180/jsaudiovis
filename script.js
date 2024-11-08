@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         analyserVisualizer = audioContext.createAnalyser();
         analyserWaveform = audioContext.createAnalyser();
         analyserVisualizer.fftSize = 512;
-        analyserWaveform.fftSize = 2048;
+        analyserWaveform.fftSize = 4096;
         gainVisualizer = audioContext.createGain();
         gainWaveform = audioContext.createGain();
         audioSource.connect(analyserVisualizer);
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.beginPath();
             
             for (let i = 0; i < bufferLengthWaveform; i++) {
-                const y = (dataArrayWaveform[i] / 255) * scaleWaveform + scaleWaveform;
+                const y = (dataArrayWaveform[i * 2] / 255) * scaleWaveform + scaleWaveform;
                 ctx[i === 0 ? 'moveTo' : 'lineTo'](i * divWaveform, y);
             }
             ctx.stroke();
