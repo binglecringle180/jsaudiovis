@@ -8,6 +8,9 @@
     z-index: 10;
 }
 .filecontainer {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     margin: 10px;
 }
 #fileupload {
@@ -52,7 +55,6 @@
     z-index: 100;
     top: 0px;
     right: 0px;
-    border: 0;
     padding: 4px;
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
